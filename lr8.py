@@ -2,9 +2,7 @@ import random
 import time
 from collections import Counter
 
-# ==========================
 # 1. ЛИНЕЙНЫЕ РЕГИСТРЫ СДВИГА (ЛРРС) С ПРИМИТИВНЫМИ МНОГОЧЛЕНАМИ
-# ==========================
 
 def lfsr_generator(initial_state, taps):
     """
@@ -57,9 +55,7 @@ def lfsr_11():
     return lfsr_generator(initial, taps)
 
 
-# ==========================
 # 2. НЕЛИНЕЙНЫЙ УСЛОЖНИТЕЛЬ ДЛЯ 3 АРГУМЕНТОВ
-# ==========================
 
 def nonlinear_combiner(a, b, c):
     """
@@ -83,9 +79,8 @@ def nonlinear_generator():
         yield nonlinear_combiner(a, b, c)
 
 
-# ==========================
 # 3. ВИХРЬ МЕРСЕННА (MERSENNE TWISTER)
-# ==========================
+
 
 def mersenne_generator(seed=None):
     """
@@ -98,9 +93,7 @@ def mersenne_generator(seed=None):
         yield x
 
 
-# ==========================
 # 4. ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-# ==========================
 
 def bits_to_int(bits):
     v = 0
@@ -113,9 +106,7 @@ def generate_sequence(gen, length):
     return [next(gen) for _ in range(length)]
 
 
-# ==========================
 # 5. ТЕСТЫ: ДНИ РОЖДЕНИЯ, ПЕРЕСЕКАЮЩИЕСЯ ПЕРЕСТАНОВКИ, РАНГИ МАТРИЦ
-# ==========================
 
 def birthday_test(bits, block_size=16, space_size=2**16):
     """

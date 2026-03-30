@@ -1,0 +1,10 @@
+[
+  {
+    "cipher": "MAGMA",
+    "key_hex": "99ee546ca752aee071169b62287bf2c3b2cb731449d1a085e1faaca64ef02900"
+  },
+  {
+    "cipher": "DES",
+    "key_hex": "db5ee8adb02e2e17"
+  }
+]

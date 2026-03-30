@@ -1,0 +1,5 @@
+{"session_id": "RSA_1774265617_9483", "algorithm": "RSA", "public_key": {"n": 2054111933, "e": 65537}, "private_key": {"n": 2054111933, "d": 44661473}, "created_at": 1774265617}
+{"session_id": "RSA_1774265914_8404", "algorithm": "RSA", "public_key": {"n": 895190837, "e": 65537}, "private_key": {"n": 895190837, "d": 363625217}, "created_at": 1774265914}
+{"session_id": "ElGamal_1774267583_9753", "algorithm": "ElGamal", "public_key": {"p": 56473, "g": 5, "y": 28663}, "private_key": {"p": 56473, "g": 5, "x": 719}, "created_at": 1774267583}
+{"session_id": "ElGamal_1774267605_7242", "algorithm": "ElGamal", "public_key": {"p": 25301, "g": 3, "y": 20054}, "private_key": {"p": 25301, "g": 3, "x": 20999}, "created_at": 1774267605}
+{"session_id": "ElGamal_1774267725_6302", "algorithm": "ElGamal", "public_key": {"p": 10099, "g": 2, "y": 4550}, "private_key": {"p": 10099, "g": 2, "x": 7298}, "created_at": 1774267725}

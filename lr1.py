@@ -39,5 +39,5 @@ def diophantine(a, b, c):
 
     return x0, y0, d
 
-a, b, c =21, 14, 35
+a, b, c =15, 37,1
 diophantine(a, b, c)

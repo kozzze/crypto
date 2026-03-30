@@ -1,41 +1,59 @@
-def quadratic_residues_app(m):
-    print(f"ОПРЕДЕЛЕНИЕ КВАДРАТИЧНЫХ ВЫЧЕТОВ ПО МОДУЛЮ {m}")
+def universal_step_by_step_solver(a, m):
+    print(f"=== ПОЛНЫЙ АНАЛИЗ СРАВНЕНИЯ: x² ≡ {a} (mod {m}) ===")
 
-    # 1. Проверка корректности модуля
-    print("\n1) Проверка модуля")
-    if m <= 1:
-        print("  Модуль должен быть ≥ 2.")
-        return
-    print(f"  Модуль корректен: m = {m}")
+    # ШАГ 1: Классификация модуля
+    print(f"\n[Шаг 1: Анализ модуля m = {m}]")
+    if m % 2 == 0:
+        print(f"  - Модуль четный. Классический символ Лежандра напрямую не применим.")
+    else:
+        print(f"  - Модуль нечетный.")
 
-    # 2. Перебор всех x и вычисление x^2 mod m
-    print("\n2) Перебор всех x от 0 до m-1 и вычисление x^2 mod m")
-    residues = set()
-    steps = []
+    # Проверка на простоту
+    d = 2
+    is_prime = True if m > 1 else False
+    while d * d <= m:
+        if m % d == 0:
+            is_prime = False
+            break
+        d += 1
+    print(f"  - Число {m} является {'ПРОСТЫМ' if is_prime else 'СОСТАВНЫМ'}.")
 
-    for x in range(m):
-        x2 = x * x
-        r = x2 % m
-        steps.append((x, x2, r))
-        print(f"  x = {x:2d}: x^2 = {x2:4d} → {x2} mod {m} = {r}")
-        residues.add(r)
+    # ШАГ 2: Генерация множества квадратов (Вычетов)
+    print(f"\n[Шаг 2: Нахождение множества вычетов Q]")
+    print(f"  Используем свойство: x² ≡ (m-x)² (mod m). Проверяем x от 0 до {m // 2}:")
 
-    # 3. Формирование множества всех возможных значений
-    print("\n3) Формирование множеств вычетов и невычетов")
-    all_values = set(range(m))
-    non_residues = sorted(all_values - residues)
-    residues = sorted(residues)
+    residues_dict = {}
+    for x in range(0, (m // 2) + 1):
+        res = (x ** 2) % m
+        if res not in residues_dict:
+            residues_dict[res] = []
+        residues_dict[res].append(x)
+        if x < 10:  # Ограничим вывод для больших модулей
+            print(f"    {x}² = {x ** 2} ≡ {res} (mod {m})")
 
-    print(f"  Все значения по модулю m: {list(all_values)}")
-    print(f"  Квадратичные вычеты:      {residues}")
-    print(f"  Квадратичные невычеты:    {non_residues}")
+    Q = sorted(list(residues_dict.keys()))
+    print(f"  Множество всех вычетов Q = {Q}")
 
-    # 4. Итог
-    print("\n4) Итог")
-    print(f"  Количество квадратичных вычетов:   {len(residues)}")
-    print(f"  Количество квадратичных невычетов: {len(non_residues)}")
+    # ШАГ 3: Нахождение невычетов
+    print(f"\n[Шаг 3: Нахождение множества невычетов N]")
+    all_possible = set(range(0, m))
+    N = sorted(list(all_possible - set(Q)))
+    print(f"  Числа, которые не могут быть остатками квадратов: N = {N}")
 
-    print("\nГотово.")
+    # ШАГ 4: Решение конкретной задачи
+    print(f"\n[Шаг 4: Итоговый вердикт для a = {a}]")
+    target = a % m
+    if target in residues_dict:
+        # Для полноты найдем все корни, включая те, что > m/2
+        all_roots = []
+        for x in range(m):
+            if (x ** 2) % m == target:
+                all_roots.append(x)
+        print(f"  Число {a} является квадратичным ВЫЧЕТОМ по модулю {m}.")
+        print(f"  Сравнение x² ≡ {a} (mod {m}) ИМЕЕТ решения: x ≡ {all_roots}")
+    else:
+        print(f"  Число {a} является квадратичным НЕВЫЧЕТОМ по модулю {m}.")
+        print(f"  Сравнение x² ≡ {a} (mod {m}) НЕ ИМЕЕТ решений.")
 
 
-quadratic_residues_app(11)
+universal_step_by_step_solver(5, 11)
